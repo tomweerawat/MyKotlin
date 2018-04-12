@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.akexorcist.recyclerviewwithitemtouchhelper.CustomItemTouchHelperListener
 import com.bumptech.glide.Glide
+import com.example.hotumit.mykotlin.Contextor
 import com.example.hotumit.mykotlin.R
 import com.example.hotumit.mykotlin.model.PhotoItemCollectionDao
+import com.squareup.picasso.Picasso
 import java.util.*
 
 class InfoAdapter(private val androidList: PhotoItemCollectionDao?) : RecyclerView.Adapter<InfoViewHolder>() {
@@ -25,11 +27,9 @@ class InfoAdapter(private val androidList: PhotoItemCollectionDao?) : RecyclerVi
             it.codeName(android?.caption ?: unknownInfo)
             it.version(android?.username ?: unknownInfo)
             it.releaseDate(android?.createdTime ?: unknownInfo)
-           /* it.imgData(android?.imageUrl?: unknownInfo)*/
-            Glide
-                    .with(holder.imageView.getContext())
+            Picasso.with(it.itemView.context)
                     .load(android?.imageUrl)
-                    .into(it.imgData())
+                    .into(it.image);
 
 
         }
